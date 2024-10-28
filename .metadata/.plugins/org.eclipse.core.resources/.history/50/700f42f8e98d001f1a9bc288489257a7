@@ -1,0 +1,38 @@
+package com.map;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class Test {
+	public static void main(String[] args) {
+		Configuration configuration = new Configuration().configure();
+		SessionFactory factory = configuration.buildSessionFactory();
+		Session session = factory.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		Laptop laptop1 = new Laptop();
+		laptop1.setBrand("Dell");
+		
+		Laptop laptop2 = new Laptop();
+		laptop2.setBrand("HP");
+		
+		Laptop laptop3 = new Laptop();
+		laptop3.setBrand("Apple");
+		
+		List<Laptop> laptops = new ArrayList<Laptop>();
+		laptops.add(laptop1);
+		laptops.add(laptop2);
+		laptops.add(laptop3);
+		
+		
+		
+		transaction.commit();
+		session.close();
+		factory.close();
+	}
+}
